@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "893746168648",
+    "firebase_url": "https://react-native-firebase-de-55b65.firebaseio.com",
+    "project_id": "react-native-firebase-de-55b65",
+    "storage_bucket": "react-native-firebase-de-55b65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893746168648:android:0ca263c42da83927",
+        "android_client_info": {
+          "package_name": "com.vladimirkuznetsov.reactnativefirebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893746168648-28n6f3bd5f9kjvq4qa5mgts5vvicmq1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSl0rP123a_a5-rBQIVgyj7HJ3m0DjyK8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
