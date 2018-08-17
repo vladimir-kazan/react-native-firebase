@@ -1,34 +1,22 @@
 import React from 'react';
-import {
-  AsyncStorage,
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import firebase from 'react-native-firebase';
 
 import { h2, errorText, textInput } from '../Styles';
 
-class Login extends React.Component {
-  state = { email: 'user@example.com', password: '', errorMessage: '' };
-
+class Signup extends React.Component {
+  state = { email: '', password: '', errorMessage: '' };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.h2}>Login</Text>
+        <Text style={styles.h2}>Sign Up</Text>
         {this.state.errorMessage &&
           <Text style={styles.errorText}>
             {this.state.errorMessage}
           </Text>
         }
-        <Text style={styles.gray}>
-          user@example.com/Admin=1
-        </Text>
         <TextInput
-          autoFocus={true}
           style={styles.textInput}
           autoCapitalize="none"
           placeholder="Email"
@@ -36,15 +24,15 @@ class Login extends React.Component {
           value={this.state.email}
         />
         <TextInput
-          secureTextEntry={true}
+          secureTextEntry
           style={styles.textInput}
           autoCapitalize="none"
           placeholder="Password"
           onChangeText={this.onChangePassword}
           value={this.state.password}
         />
-        <Button title="Login" onPress={this.handleLogin} />
-        <Button title="Don't have an account? Sign Up" onPress={this.handleSingup} />
+        <Button title="Sing Up" onPress={this.handleSignup} />
+        <Button title="Already have an account? Login" onPress={this.handleLogin} />
       </View>
     );
   }
@@ -57,24 +45,19 @@ class Login extends React.Component {
     this.setState({ password });
   };
 
-  handleLogin = async () => {
+  handleSignup = async () => {
     try {
-      const { email, password } = this.state;
-      const result = await firebase
-        .auth()
-        .signInAndRetrieveDataWithEmailAndPassword(email, password);
-      await AsyncStorage.setItem('userEmail', email);
-      console.log({ loginResult: result });
-      this.props.navigation.navigate('Main');
+      const result = await firebase.auth()
+        .createUserAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password);
+      console.log({ signupResult: result });
+      this.props.navigation.navigate('App');
     } catch (error) {
       this.setState({ errorMessage: error.message });
     }
   };
 
-  handleSingup = async () => {
-    const { email } = this.state;
-    await AsyncStorage.setItem('userEmail', email);
-    this.props.navigation.navigate('Signup');
+  handleLogin = () => {
+    this.props.navigation.navigate('Login');
   };
 }
 
@@ -89,9 +72,6 @@ const styles = StyleSheet.create({
   textInput: { ...textInput, ...{
     width: '90%',
   }},
-  gray: {
-    color: '#ccc',
-  }
 });
 
-export default Login;
+export default Signup;

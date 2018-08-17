@@ -9,7 +9,6 @@ class Loading extends React.Component {
   }
 
   onAuthChanged(user) {
-    console.log(this, user);
     const { navigation } = this.props;
     const destination = user ? 'App' : 'Login';
     navigation.navigate(destination);
@@ -21,7 +20,7 @@ class Loading extends React.Component {
         <Text>Loading</Text>
         <ActivityIndicator size="large" />
       </View>
-    )
+    );
   }
 }
 
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default Loading;

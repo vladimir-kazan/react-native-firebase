@@ -1,4 +1,3 @@
-// import React from 'react';
 import { YellowBox } from 'react-native';
 // import firebase from 'react-native-firebase';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
@@ -11,14 +10,34 @@ YellowBox.ignoreWarnings([
 
 import Loading from './src/components/Loading';
 import Login from './src/components/Login';
+import Signup from './src/components/Signup';
 import Main from './src/components/Main';
+import FlatList from './src/components/FlatList';
 
-const AppStack = createStackNavigator({ Home: Main });
+const AppStack = createStackNavigator({
+  Home: {
+    screen: Main,
+    navigationOptions: () => ({
+      title: 'Home',
+      headerBackTitle: 'A much too long text for back button from B to A',
+      headerTruncatedBackTitle: `Main Page`
+    }),
+  },
+  FlatList: {
+    screen: FlatList,
+    navigationOptions: () => ({
+      title: 'FlatList Demo',
+      headerBackTitle: 'Main Page',
+      headerTruncatedBackTitle: 'Main Page'
+    }),
+  }
+});
 
 const App = createSwitchNavigator(
   {
     Loading,
     Login,
+    Signup,
     App: AppStack,
   },
   {
